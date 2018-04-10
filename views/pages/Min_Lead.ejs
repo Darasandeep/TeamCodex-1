@@ -8,39 +8,37 @@
   $(document).ready(function(){
     $('a.edit').click(function () {
     var text = $('.name').text();
-    var input = $('<input id="attributename" type="text" value="' + text + '" />')
+    var input = $('<input id="name1" type="text" value="' + text + '" />')
     $('.name').text('').append(input);
-    input.select();
-    var result = $('.name').val();
-    });
-    $('a.edit').click(function () {
-    var text = $('.mail').text();
-    var input = $('<input id="attributemail" type="text" value="' + text + '" />')
-    $('.mail').text('').append(input);
-    input.select();
-    })
-    $('a.edit').click(function () {
-    var text = $('.numb').text();
-    var input = $('<input id="attributenumb" type="text" value="' + text + '" />')
-    $('.numb').text('').append(input);
     input.select();
     $('.save').show();
     })
     $('a.save').click(function () {
-        $('.name').html ( $('#attributename').val() );
-
-
-    });
-    $('a.save').click(function () {
-        $('.mail').html ( $('#attributemail').val() );
-    });
-    $('a.save').click(function () {
-        $('.numb').html ( $('#attributenumb').val() );
+        $('.name').html ( $('#name1').val() );
         $('.save').hide();
-    });
+    })
+    $('a.edit').click(function () {
+    var text = $('.mail').text();
+    var input = $('<input id="mail1" type="text" value="' + text + '" />')
+    $('.mail').text('').append(input);
+    input.select();
+    $('.save').show();
+    })
     $('a.save').click(function () {
-        $('h2').text("Welcome "+$('.name').text()+"!");
-    });
+        $('.mail').html ( $('#mail1').val() );
+        $('.save').hide();
+    })
+    $('a.edit').click(function () {
+    var text = $('.phone').text();
+    var input = $('<input id="phone1" type="text" value="' + text + '" />')
+    $('.phone').text('').append(input);
+    input.select();
+    $('.save').show();
+    })
+    $('a.save').click(function () {
+        $('.phone').html ( $('#phone1').val() );
+        $('.save').hide();
+    })
   });
     </Script>
 </head>
@@ -70,10 +68,10 @@
                                     <p>
                                             <i class="glyphicon glyphicon-user"></i><b>Name:</b> <label class="name">Jolaine</label>
                                             <br />
-                                        <i class="glyphicon glyphicon-envelope"></i><b>Email:</b> jolaine@example.com
+                                        <i class="glyphicon glyphicon-envelope"></i><b>Email:</b> <label class="mail">jolaine@example.com</label>
                                         <br />
-                                        <i class="glyphicon glyphicon-phone"></i><b>Contact:</b> +16605280000</p>
-                                          <div class="align-top"><a class= "save" href="#" hidden><div align="right">save</div></a></div>
+                                        <i class="glyphicon glyphicon-phone"></i><b>Contact:</b>  <label class="phone">+16605280000</label></p>
+                                          <div class="align-top"><a class= "save" href="#" hidden><div align="right"><button type="button" class="btn btn-default btn-sm">save</button></div></a></div>
                                     <!-- Split button -->
                                     Note:<textarea name="message" rows="2" cols="100">Ill be free during Saturdays and Sundays between 10 am to 7pm.
                                             </textarea>
@@ -83,16 +81,16 @@
                         </div>
                     </div>
                 </div>
-                <!-- pannels for skill and ministries -->
+               
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="panel panel-default">
-                            <div class="panel-heading"><div class="col-sm-9">Your ministries</div><a href= "/ministrySurvey" ><div align="right"><button type="button" class="btn btn-default btn-sm">
+                            <div class="panel-heading"><div class="col-sm-9">Your ministries</div><a href= "#" ><div align="right"><button type="button" class="btn btn-default btn-sm">
   <span class="glyphicon glyphicon-pencil"></span> Edit</div></a></div>
                             <div class="panel-body">
 
 
-                                    <ul><a href="/ministry">Adult Faith Formation Programs<font color="red">(Lead)</font></a></ul>
+                                    <ul><a href="/ministryEdit">Adult Faith Formation Programs<font color="red">(Lead)</font></a></ul>
                                     <ul><a href="/ministry">Altar Servers</a></ul>
                                     <ul><a href="/ministry">Annulment Advocate</a></ul>
                                     <ul><a href="/ministry">Art & Environment Committee</a></ul>
@@ -101,37 +99,21 @@
 
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="panel panel-default">
-                                <div class="panel-heading"><div class="col-sm-9">Your skills</div><a href= "/skillSurvey" ><div align="right"><button type="button" class="btn btn-default btn-sm">
+                                <div class="panel-heading"><div class="col-sm-9">Your skills</div><a href= "#" ><div align="right"><button type="button" class="btn btn-default btn-sm">
       <span class="glyphicon glyphicon-pencil"></span> Edit</div></a></div>
                             <div class="panel-body">
-                                    <ul><a>Writing</a></ul>
-                                    <ul><a>Graphic Design</a></ul>
-                                    <ul><a>Hardscape</a></ul>
-                                    <ul><a>Leadership</a></ul>
-                                    <ul><a>Photography</a></ul>
+                                    <ul>Writing</ul>
+                                    <ul>Graphic Design</ul>
+                                    <ul>Hardscape</ul>
+                                    <ul>Leadership</ul>
+                                    <ul>Photography</ul>
                             </div>
 
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="panel-group">
-                            <div class="panel panel-default">
-                                <div class="panel-heading" class="col-sm-3">Updates</div>
-                                <div class="panel-body">
-                                    <ul>
-                                        <li>Event one has started </br>
-                                        </li>
-                                        <li>event 2 has ended</br>
-                                        </li>
-                                        <li>event 3 is on 2-23-2017, You are welcome to it </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    
             </div>
         <!-- </div> -->
 
