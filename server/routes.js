@@ -294,6 +294,13 @@ router.get("/allministries", function (req, res) {
   });
 });
 
+router.get("/ministryviewadmin", function (req, res) {
+  ministrymodel.find({}, ["minisrtyname"], function (err, results) {
+    console.log("minsitries", results);
+    res.render("adminViewMinistry", { ministrylist: results });
+  });
+});
+
 router.get("/ministriess", function (req, res) {
   ministrymodel.find({}, ["minisrtyname"], function (err, results) {
     console.log("minsitries", results);
