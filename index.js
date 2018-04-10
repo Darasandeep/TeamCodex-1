@@ -25,8 +25,11 @@ app.set('views', path.join(__dirname, 'views/pages'));
 // end of my code
 app.set('view engine', 'ejs');
 
-var dbURL = 'mongodb://localhost:27017/churchdb';
-mongoose.connect(dbURL);
+var dbURL = 'mongodb://sandeep:dara@ds151528.mlab.com:51528/teamcodex';
+mongoose.connect(dbURL, { useMongoClient: true });
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'dbURL connection error:'));
 // var dbURL = 'mongodb://sandeep:dara@ds151528.mlab.com:51528/teamcodex';
 
 // mongoose.connect(dbURL, { useMongoClient: true });
