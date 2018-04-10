@@ -173,6 +173,7 @@ router.post("/newuser", function (req, res) {
       user.Lastname = req.body.lname;
       user.Email = req.body.email;
       user.Password = req.body.password;
+      user.usertype = "user";
 
       user.save(function (err, result) {
         if (!err) {
@@ -207,8 +208,17 @@ router.post('/login', function (req, res) {
         errorMessage: "Please Enter Valid Entries"
       });
 
+     
+    }
+    
+    else if(results[0].usertype=="admin")
+      {
+            res.render('admin');
+     }
 
-    } else {
+
+    
+    else {
        puserid = results[0]._id;
        console.log(results);
       res.render("parishioner", { parishioner: results });
