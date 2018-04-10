@@ -550,6 +550,18 @@ router.get("/skillsReportView", function (req, res) {
 
 
 
+router.post("/deleteuser", function (req, res) {
+  let email ={Email:req.body.uname};
+
+ churchmodel.deleteOne({Email: email}, function(err, result){
+   if(!err){
+       res.redirect('back');
+       console.log(req.body.uname + " deleted succesfully");
+   }
+});
+ console.log(req.body.uname);
+ 
+});
 
 
 

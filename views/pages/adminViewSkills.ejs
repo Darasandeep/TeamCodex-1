@@ -100,7 +100,21 @@
  </div>
 </div>
 
-	
+<div class="col-sm-12">
+	<div class="panel panel-default">
+		 
+		<div class="panel-heading"> Discipleship/Spirituality </div>
+			<div class="panel-body">
+				 <ul class="ministryListBlk">
+					 <% for(let i=0; i<skillslist.length; i++) { %>
+							 <% if (skillslist[i].Skill_Category == 'Discipleship/Spirituality'){ %>
+					 <li><%= skillslist[i].Skill_Name  %></li>
+						 <% } }%>
+					 </ul>
+ </div>
+</div>
+</div>
+
 	</div>
 
 </div>
