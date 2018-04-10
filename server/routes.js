@@ -174,6 +174,7 @@ router.post("/newuser", function (req, res) {
       user.Lastname = req.body.lname;
       user.Email = req.body.email;
       user.Password = md5(req.body.password);
+      user.usertype = "user";
 
       user.save(function (err, result) {
         if (!err) {
@@ -209,8 +210,17 @@ router.post('/login', function (req, res) {
         errorMessage: "Please Enter Valid Entries"
       });
 
+     
+    }
+    
+    else if(results[0].usertype=="admin")
+      {
+            res.render('admin');
+     }
 
-    } else {
+
+    
+    else {
        puserid = results[0]._id;
        console.log(results);
       res.render("parishioner", { parishioner: results });
@@ -293,6 +303,13 @@ router.get("/allministries", function (req, res) {
   ministrymodel.find({}, ["minisrtyname"], function (err, results) {
     console.log("minsitries", results);
     res.render("ministries", { ministrylist: results });
+  });
+});
+
+router.get("/ministryviewadmin", function (req, res) {
+  ministrymodel.find({}, ["minisrtyname"], function (err, results) {
+    console.log("minsitries", results);
+    res.render("adminViewMinistry", { ministrylist: results });
   });
 });
 
