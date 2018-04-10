@@ -217,8 +217,14 @@ router.post('/login', function (req, res) {
       {
             res.render('admin');
      }
-
-
+     else if(results[0].usertype=="minlead")
+     {
+      puserid = results[0]._id;
+      console.log(results);
+     res.render("Min_Lead", { parishioner: results });
+     console.log("details are" + puserid);
+     // return next();
+   }
     
     else {
        puserid = results[0]._id;
