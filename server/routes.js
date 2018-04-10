@@ -2,6 +2,7 @@ var churchmodel = require('../model/churchmodel');
 var ministrymodel = require('../model/ministrymodel.js');
 var skillsmodel = require('../model/skillsmodel.js');
 var session = require('client-sessions');
+var md5 = require('md5');
 // using Version 5.4.1
 //  var jsdom = require('jsdom').jsdom;
 // //  var document = jsdom('<html></html>', {});
@@ -153,10 +154,10 @@ router.post("/newuser", function (req, res) {
   var user = new churchmodel();
   Parishionerid = req.body.pid;
 
-  var password = req.body.password;
-  bcrypt.hash(password, saltRounds, function (err, hash) {
-    // Store hash in your password DB.
-  });
+  var password = md5(req.body.password);
+  // bcrypt.hash(password, saltRounds, function (err, hash) {
+  //   // Store hash in your password DB.
+  // });
 
 
   churchmodel.find({ PID: Parishionerid }, function (err, results) {
@@ -172,7 +173,8 @@ router.post("/newuser", function (req, res) {
       user.Firstname = req.body.fname;
       user.Lastname = req.body.lname;
       user.Email = req.body.email;
-      user.Password = req.body.password;
+      user.Password = md5(req.body.password);
+      user.usertype = "user";
 
       user.save(function (err, result) {
         if (!err) {
@@ -197,7 +199,8 @@ router.post('/login', function (req, res) {
   //let id = req.params.id;
   var username = req.body.uname;
   current = username;
-  var password = req.body.psw;
+  var password =md5(req.body.psw);
+  console.log("password is"+password);
 
   churchmodel.find({ Email: username, Password: password }, [], function (err, results) {
     if (!results.length) {
@@ -207,8 +210,23 @@ router.post('/login', function (req, res) {
         errorMessage: "Please Enter Valid Entries"
       });
 
-
-    } else {
+     
+    }
+    
+    else if(results[0].usertype=="admin")
+      {
+            res.render('admin');
+     }
+     else if(results[0].usertype=="minlead")
+     {
+      puserid = results[0]._id;
+      console.log(results);
+     res.render("Min_Lead", { parishioner: results });
+     console.log("details are" + puserid);
+     // return next();
+   }
+    
+    else {
        puserid = results[0]._id;
        console.log(results);
       res.render("parishioner", { parishioner: results });
@@ -291,6 +309,13 @@ router.get("/allministries", function (req, res) {
   ministrymodel.find({}, ["minisrtyname"], function (err, results) {
     console.log("minsitries", results);
     res.render("ministries", { ministrylist: results });
+  });
+});
+
+router.get("/ministryviewadmin", function (req, res) {
+  ministrymodel.find({}, ["minisrtyname"], function (err, results) {
+    console.log("minsitries", results);
+    res.render("adminViewMinistry", { ministrylist: results });
   });
 });
 
