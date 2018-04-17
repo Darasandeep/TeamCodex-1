@@ -81,7 +81,16 @@ router.get('/ministryNoLogin', function (req, res) {
 router.get('/Ministrytest', function (req, res) {
   res.render('Ministrytest');
 });
+router.get('/ReportSkillSurvey',function(req,res){
 
+  res.render('ReportSkillSurvey');
+  
+  });
+  
+  router.get('/ReportMinistrySurvey',function(req,res){
+  
+  res.render('ReportMinistrySurvey');
+  });  
 router.get('/ministry2', function (req, res) {
   res.render('ministry2');
 });
@@ -254,6 +263,38 @@ router.get('/parishioner', function (req, res) {
       // return next();
     }
   });
+});
+router.get("/ReportSkillSurveyView",
+function(req,res){
+
+skillsmodel.find({}, ["Skill_Name","Skill_Category"] ,
+function(err,
+results){
+
+console.log("skills",
+results);
+
+res.render("ReportSkillSurvey", {skillslist:
+results});
+
+});
+
+});
+router.get("/ReportMinistrySurveyView",
+function(req,res){
+
+ministrymodel.find({}, ["minisrtyname"] ,
+function(err,
+results){
+
+console.log("minsitries",
+results);
+
+res.render("ReportMinistrySurvey", {ministrylist:
+results});
+
+});
+
 });
 
 router.post("/newministry", function (req, res) {
