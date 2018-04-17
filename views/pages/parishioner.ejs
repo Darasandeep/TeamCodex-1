@@ -178,7 +178,7 @@
                             <div class="panel-body">
                                     <%  if(parishioner[0].ministries.length!=0){ %>
                                     <% for(let i=0; i<parishioner[0].ministries.length; i++) { %>
-                                            <li><%= parishioner[0].ministries[i] %></li>
+                                            <li><a href="/ministryee/<%= parishioner[0].ministries[i] %>"><%= parishioner[0].ministries[i] %></a></li>
                                             <% } %>
                                             <% } %>
                             </div>
