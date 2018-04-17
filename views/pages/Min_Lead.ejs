@@ -5,6 +5,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <script>
+        
   $(document).ready(function(){
     $('a.edit').click(function () {
     var text = $('.name').text();
@@ -30,7 +31,7 @@
     })
     $('a.edit').click(function () {
     var text = $('.phone').text();
-    var input = $('<input id="phone1" type="text" value="' + text + '" />')
+    var input = $('<input id="phone1" name="num" type="text" value=""' + text + '" />')
     $('.phone').text('').append(input);
     input.select();
     $('.save').show();
@@ -39,7 +40,21 @@
         $('.phone').html ( $('#phone1').val() );
         $('.save').hide();
     })
+    function phonenumber(num)
+{
+  var phoneno = /^\d{10}$/;
+  if(num.value.match(phoneno))
+        {
+      return true;
+        }
+      else
+        {
+        alert("enter valid number");
+        return false;
+        }
+}
   });
+  
     </Script>
 </head>
 
@@ -70,8 +85,8 @@
                                             <br />
                                         <i class="glyphicon glyphicon-envelope"></i><b>Email:</b> <label class="mail">jolaine@example.com</label>
                                         <br />
-                                        <i class="glyphicon glyphicon-phone"></i><b>Contact:</b>  <label class="phone">+16605280000</label></p>
-                                          <div class="align-top"><a class= "save" href="#" hidden><div align="right"><button type="button" class="btn btn-default btn-sm">save</button></div></a></div>
+                                        <i class="glyphicon glyphicon-phone"></i><b>Contact:</b>  <label class="phone">1234567890</label></p>
+                                          <div class="align-top"><a class= "save" href="#" hidden><div align="right"><button type="button" class="btn btn-default btn-sm" onclick="phonenumber(num)">save</button></div></a></div>
                                     <!-- Split button -->
                                     Note:<textarea name="message" rows="2" cols="100">Ill be free during Saturdays and Sundays between 10 am to 7pm.
                                             </textarea>

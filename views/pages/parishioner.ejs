@@ -33,11 +33,21 @@
     })
     $('a.edit').click(function () {
     var text = $('.numb').text();
-    var input = $('<input id="attributenumb" type="text" value="' + text + '" />')
+   // console.log("number is"+text);
+    var input = $('<input id="attributenumb" type="tel" pattern=".{10,}" value="' + text + '" />')
     $('.numb').text('').append(input);
-    input.select();
+    
+    var abc=document.getElementsByClassName("numb");
+    if(abc.length==10){
+        input.select();
     $('.save').show();
-    })
+    }
+    else{
+        alert("number");
+        console.log("number"+text);
+    }
+})
+
     $('a.save').click(function () {
         $('.name').html ( $('#attributename').val() );
         $('.save').hide();
@@ -149,12 +159,12 @@
                                             <br />
                                             <b>Address:</b><label class="pAddress">800 university drive, maryville</label>
                                             <br/>
-                                            </i><b>Phone:</b><label class="numb">6605286633 </label>
+                                            </i><b>Phone:</b><label class="numb"  pattern=".{10,}" type="tel"  required title="10 characters">6605286633</label>
                                         <br />
 
                                         <b>Email:</b><label class="mail"> <%= parishioner[0].Email%> </label>
                                     </p>
-                                        <div class="align-top"><a class= "save" href="#" hidden><div align="right"><button type="button" class="btn btn-default btn-sm">save</button></div></a></div>
+                                        <div class="align-top"><a class= "save" href="#" hidden><div align="right"><button input type="submit" value="Submit" onclick="CheckValidation();" class="btn btn-default btn-sm">save</button></div></a></div>
                                     <!-- Split button -->
 
 
@@ -206,7 +216,17 @@
 
 
             <!-- page code -->
+<script>
+        function CheckValidation(){
+            var frmvalid = $(".numb").value();
+            if (frmvalid.length!=10) {
+                alert("please enter 10 digits");
+            }
+            else{
 
+            }
+        }
+</script>
 
 </body>
 
