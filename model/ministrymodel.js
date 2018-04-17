@@ -7,9 +7,8 @@ var ministryschema=mongoose.Schema({
   minisrtyname:{
     type: String
   },
-  lead:{
-    type:String
-  },
+  skills:[String],
+  lead:[String],
   mission:{
     type:String
   },
@@ -17,6 +16,12 @@ var ministryschema=mongoose.Schema({
     type:String
   },
   status:{
+    type:String
+  },
+  activity:{
+    type:String
+  },
+  contact:{
     type:String
   }
 

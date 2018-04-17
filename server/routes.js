@@ -516,10 +516,12 @@ router.post("/deleteskillsAdmin", function (req, res) {
 router.post("/minsurvey", function (req, res) {
   var mlist = {
     "ministries":req.body.ministry
+    
   };
   churchmodel.update({_id: puserid}, mlist, function(err, result){
     if(!err){
       res.redirect('/parishioner');
+      console.log(mlist);
     }
 });
 });
@@ -574,6 +576,20 @@ router.post("/deleteuser", function (req, res) {
 
 
 
+router.post("/updateministrypage", function (req, res) {
+  let ministry = {
+    "minisrtyname":req.body.mname,
+    "activity": [req.body.act1,req.body.act2],
+    "contact":req.body.pAddress
+  };
+
+  ministrymodel.update({minisrtyname: req.body.mname}, ministry, function(err, result){
+   if(!err){
+       res.redirect('back');
+   }
+});
+
+});
 
 
 
