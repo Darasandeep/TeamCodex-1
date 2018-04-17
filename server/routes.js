@@ -343,7 +343,9 @@ router.post("/newministry", function (req, res) {
 });
 
 
-
+router.get('/ministryEdit', function (req, res) {
+  res.render('ministryEdit');
+});
 
 
 router.get("/allministries", function (req, res) {
@@ -366,6 +368,8 @@ router.get("/ministriess", function (req, res) {
     res.render("ministriesWithLogin", { ministrylist: results });
   });
 });
+
+
 
 
 router.get("/ministry/:id", function (req, res) {

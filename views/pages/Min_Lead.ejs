@@ -10,8 +10,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <script>
+<<<<<<< HEAD
+        
+=======
      console.log(5 + 6);
 
+>>>>>>> 9d3364613ef03c84471416fa204646f392b3b1a4
   $(document).ready(function(){
     $('a.edit').click(function () {
     var text = $('.name').text();
@@ -34,9 +38,15 @@
     $('.save').show();
     })
     $('a.edit').click(function () {
+<<<<<<< HEAD
+    var text = $('.phone').text();
+    var input = $('<input id="phone1" name="num" type="text" value=""' + text + '" />')
+    $('.phone').text('').append(input);
+=======
     var text = $('.numb').text();
     var input = $('<input id="attributenumb" type="text" value="' + text + '" />')
     $('.numb').text('').append(input);
+>>>>>>> 9d3364613ef03c84471416fa204646f392b3b1a4
     input.select();
     $('.save').show();
     })
@@ -52,6 +62,23 @@
         $('.pAddress').html ( $('#attributeadd').val() );
         $('.save').hide();
     })
+<<<<<<< HEAD
+    function phonenumber(num)
+{
+  var phoneno = /^\d{10}$/;
+  if(num.value.match(phoneno))
+        {
+      return true;
+        }
+      else
+        {
+        alert("enter valid number");
+        return false;
+        }
+}
+  });
+  
+=======
     $('a.save').click(function () {
         $('.numb').html ( $('#attributenumb').val() );
         $('.save').hide();
@@ -85,6 +112,7 @@
   });
 
 
+>>>>>>> 9d3364613ef03c84471416fa204646f392b3b1a4
     </Script>
 </head>
 
@@ -159,10 +187,15 @@
                                             <br/>
                                             </i><b>Phone:</b><label class="numb">6605286633 </label>
                                         <br />
+<<<<<<< HEAD
+                                        <i class="glyphicon glyphicon-phone"></i><b>Contact:</b>  <label class="phone">1234567890</label></p>
+                                          <div class="align-top"><a class= "save" href="#" hidden><div align="right"><button type="button" class="btn btn-default btn-sm" onclick="phonenumber(num)">save</button></div></a></div>
+=======
 
                                         <b>Email:</b><label class="mail"> <%= parishioner[0].Email%> </label>
                                     </p>
                                         <div class="align-top"><a class= "save" href="#" hidden><div align="right"><button type="button" class="btn btn-default btn-sm">save</button></div></a></div>
+>>>>>>> 9d3364613ef03c84471416fa204646f392b3b1a4
                                     <!-- Split button -->
 
 
@@ -184,6 +217,7 @@
       <span class="glyphicon glyphicon-pencil"></span> Edit
     </button></div></a></div>
                             <div class="panel-body">
+                                    <li><a href="/ministryEdit">Adult Faith Formation Programs <font color="red">(Lead)</font></a></li>
                                     <% for(let i=0; i<parishioner[0].ministries.length; i++) { %>
                                             <li><a href="/ministryee/<%= parishioner[0].ministries[i] %>"><%= parishioner[0].ministries[i] %></a></li>
                                             <% } %>
