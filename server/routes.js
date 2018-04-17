@@ -343,7 +343,9 @@ router.post("/newministry", function (req, res) {
 });
 
 
-
+router.get('/ministryEdit', function (req, res) {
+  res.render('ministryEdit');
+});
 
 
 router.get("/allministries", function (req, res) {
@@ -368,8 +370,18 @@ router.get("/ministriess", function (req, res) {
 });
 
 
+
+
 router.get("/ministry/:id", function (req, res) {
   ministrymodel.findOne({ _id: req.params.id }, function (err, result) {
+    if (!err) {
+      res.render("ministry", { ministry: result });
+    }
+  });
+});
+
+router.get("/ministryee/:id", function (req, res) {
+  ministrymodel.findOne({ minisrtyname: req.params.id }, function (err, result) {
     if (!err) {
       res.render("ministry", { ministry: result });
     }
@@ -557,10 +569,12 @@ router.post("/deleteskillsAdmin", function (req, res) {
 router.post("/minsurvey", function (req, res) {
   var mlist = {
     "ministries":req.body.ministry
+    
   };
   churchmodel.update({_id: puserid}, mlist, function(err, result){
     if(!err){
       res.redirect('/parishioner');
+      console.log(mlist);
     }
 });
 });
@@ -599,10 +613,36 @@ router.get("/skillsReportView", function (req, res) {
 
 
 
+router.post("/deleteuser", function (req, res) {
+  let email ={Email:req.body.uname};
+
+ churchmodel.deleteOne({Email: email}, function(err, result){
+   if(!err){
+       res.redirect('back');
+       console.log(req.body.uname + " deleted succesfully");
+   }
+});
+ console.log(req.body.uname);
+ 
+});
 
 
 
 
+router.post("/updateministrypage", function (req, res) {
+  let ministry = {
+    "minisrtyname":req.body.mname,
+    "activity": [req.body.act1,req.body.act2],
+    "contact":req.body.pAddress
+  };
+
+  ministrymodel.update({minisrtyname: req.body.mname}, ministry, function(err, result){
+   if(!err){
+       res.redirect('back');
+   }
+});
+
+});
 
 
 
