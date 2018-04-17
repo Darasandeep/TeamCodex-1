@@ -587,21 +587,34 @@ router.get("/skillsviewadmin", function (req, res) {
 });
 
 router.get("/skillsReportView", function (req, res) {
+  churchmodel.find({}, ["Firstname", "Lastname" , "Email" , "skills"], function (err, results) {
+    console.log("skills", results);
+    res.render("skillReport", { user: results });
+  });
+});
+
+router.get("/ministryReportView", function (req, res) {
+  churchmodel.find({}, ["Firstname", "Lastname" , "Email" , "ministries"], function (err, results) {
+    console.log("skills", results);
+    res.render("ministryReport", { user: results });
+  });
+});
+
+router.get("/ReportSkillSurveyView", function (req, res) {
   skillsmodel.find({}, ["Skill_Name", "Skill_Category"], function (err, results) {
     console.log("skills", results);
-    res.render("skillReport", { skillslist: results });
+    res.render("ReportSkillSurvey", { skillslist: results });
   });
 });
 
 
-
-// router.get("/nextministry", function (req, res) {
+router.get("/ReportMinistrySurveyView", function (req, res) {
   
-//   ministrymodel.find({}, ["minisrtyname"], function (err, results) {
-//     console.log("minsitries", results);
-//     res.render("ministriesWithLogin", { ministrylist: results });
-//   });
-// });
+  ministrymodel.find({}, ["minisrtyname"], function (err, results) {
+    console.log("minsitries", results);
+    res.render("ReportMinistrySurvey", { ministrylist: results });
+  });
+});
 
 
 
@@ -627,7 +640,7 @@ router.post("/deleteuser", function (req, res) {
 
 router.post("/updateministrypage", function (req, res) {
   let ministry = {
-    "minisrtyname":req.body.mname,
+    "minisrtyname":req.body.scheckBox14,
     "activity": [req.body.act1,req.body.act2],
     "contact":req.body.pAddress
   };
@@ -635,6 +648,7 @@ router.post("/updateministrypage", function (req, res) {
   ministrymodel.update({minisrtyname: req.body.mname}, ministry, function(err, result){
    if(!err){
        res.redirect('back');
+       console.log(ministry);
    }
 });
 

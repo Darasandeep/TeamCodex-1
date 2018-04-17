@@ -7,7 +7,7 @@
       $("#btnPrint").live("click", function () {
           var divContents = $("#dvContainer").html();
           var printWindow = window.open('', '', 'height=400,width=800');
-          printWindow.document.write('<html><head><title>Skills</title>');
+          printWindow.document.write('<html><head><title>Ministries List</title>');
           printWindow.document.write('</head><body >');
           printWindow.document.write(divContents);
           printWindow.document.write('</body></html>');
@@ -19,19 +19,18 @@
         let url = URL.createObjectURL(file);
         let a = $("<a />", {
         href: url,
-        download: "List_of_Skills.xls"}).appendTo("body").get(0).click();
+        download: "List_of_Ministries.xls"}).appendTo("body").get(0).click();
         e.preventDefault();
       });
   </script>
   <style>
-        table, th, td {
-          border: 1px solid black;
-
-      }
-      table{
-          width: 100%;
-      }
-        </style>
+  table, th, td {
+    border: 1px solid black;
+}
+table{
+    width: 100%;
+}
+  </style>
 </head>
 
 <body>
@@ -40,10 +39,10 @@
 <div class = "container">   
     <div class="row">
         <div class="jumbotron">
-            <h2>List of parishioners and their skills</h2>
+            <h2>List of parishioners and their ministries</h2>
             <h3> Download here
                     <input type="button" class="btn btn-info" value="as PDF" id="btnPrint" />
-                    <input type="button" class="btn btn-info" value="as Excel" id="btnPrint2" />
+                    <input type="button" class="btn btn-info" value="as Excel" id="btnPrint2"/>
                 </h3>
             <!-- <div>
                     <span> <label><input type="radio" name="optradio" class="skill">List of all skills</label> </span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -59,24 +58,24 @@
             </script> -->
             <form id="form1">
                     <div id="dvContainer" >
-                        
+                       
                             <div class="col-sm-12">
                                     <div class="panel panel-default">
                                       
                                         <div class="panel-body">
                                                        <ul class="ministryListBlk">
-                                                           <table>
-                                                            <tr>
-                                                            <th>Firstname</th>
-                                                            <th>Lastname</th>
-                                                            <th>Skills</th>
-                                                            </tr>
-                                                            <% for(let i=0; i<user.length; i++) { %>
-                                                            <tr><td><%= user[i].Firstname %></td>
-                                                                <td><%= user[i].Lastname %></td>
-                                                            <td><%= user[i].skills %></td></tr>
-                                                            <% } %>
-                                                        </table>
+                                                            <table>
+                                                                    <tr>
+                                                                    <th>Firstname</th>
+                                                                    <th>Lastname</th>
+                                                                    <th>Ministries Involved</th>
+                                                                    </tr>
+                                                                    <% for(let i=0; i<user.length; i++) { %>
+                                                                    <tr><td><%= user[i].Firstname %></td>
+                                                                        <td><%= user[i].Lastname %></td>
+                                                                    <td><%= user[i].ministries %></td></tr>
+                                                                    <% } %>
+                                                                </table>
                                                            </ul>
                                                            
                                                               
@@ -95,14 +94,16 @@
                                                             <tr>
                                                             <th>Firstname</th>
                                                             <th>Lastname</th>
-                                                            <th>Skills</th>
+                                                            <th>Ministries Involved</th>
                                                             </tr>
                                                             <% for(let i=0; i<user.length; i++) { %>
                                                             <tr><td><%= user[i].Firstname %></td>
                                                                 <td><%= user[i].Lastname %></td>
-                                                            <td><%= user[i].skills %></td></tr>
+                                                            <td><%= user[i].ministries %></td></tr>
                                                             <% } %>
                                                         </table>
+                                                
+
                                                    </ul>
                                                    
                                                       
@@ -111,7 +112,7 @@
                        </div>
             </div>
                     
-                    
+                   
                     </form>
 
         </div>
