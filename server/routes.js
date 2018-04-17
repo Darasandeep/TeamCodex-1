@@ -376,6 +376,14 @@ router.get("/ministry/:id", function (req, res) {
   });
 });
 
+router.get("/ministryee/:id", function (req, res) {
+  ministrymodel.findOne({ minisrtyname: req.params.id }, function (err, result) {
+    if (!err) {
+      res.render("ministry", { ministry: result });
+    }
+  });
+});
+
 router.get("/ministryEdit/:id", function (req, res) {
   ministrymodel.findOne({ _id: req.params.id }, function (err, result) {
     if (!err) {
