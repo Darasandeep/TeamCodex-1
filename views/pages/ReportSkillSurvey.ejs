@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ./partials/header.ejs %>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <link href="http://cdn.grapecity.com/spreadjs/hosted/css/gc.spread.sheets.excel2013white.10.1.0.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="http://cdn.grapecity.com/spreadjs/hosted/scripts/gc.spread.sheets.all.10.1.0.min.js"></script>
+  <script type="text/javascript" src="http://cdn.grapecity.com/spreadjs/hosted/scripts/interop/gc.spread.excelio.10.1.0.min.js"></script>
+  <script type="text/javascript">
+      $("#btnPrint").live("click", function () {
+          var divContents = $("#dvContainer").html();
+          var printWindow = window.open('', '', 'height=400,width=800');
+          printWindow.document.write('<html><head><title>Skills</title>');
+          printWindow.document.write('</head><body >');
+          printWindow.document.write(divContents);
+          printWindow.document.write('</body></html>');
+          printWindow.document.close();
+          printWindow.print();
+      });
+      $("#btnPrint2").live("click", function (e) {
+        let file = new Blob([$('#dvContainer2').html()], {type:"application/vnd.ms-excel"});
+        let url = URL.createObjectURL(file);
+        let a = $("<a />", {
+        href: url,
+        download: "List_of_Skills.xls"}).appendTo("body").get(0).click();
+        e.preventDefault();
+      });
+
+      
+  </script>
+ <style>
+body {
+    font-size: 12pt;
+    font-family: Calibri;
+    padding : 10px;
+}
+table {
+    border: 1px solid black;
+}
+th {
+    border: 1px solid black;
+    padding: 5px;
+    background-color:grey;
+    color: white;
+}
+td {
+    border: 1px solid black;
+    padding: 5px;
+}
+input {
+    font-size: 12pt;
+    font-family: Calibri;
+}
+</style>
+</head>
+
+<body>
+  <% include ./partials/loggedtop.ejs %>
+  <% include ./partials/adminnav.ejs %>
+  
+    <div class = "container">   
+    <div class="row">
+        <div class="jumbotron">
+            <h2>Please click below to download the survey</h2>
+            <!-- <div>
+                    <span> <label><input type="radio" name="optradio" class="skill">List of all skills</label> </span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            </div>
+            <div>       
+                    <span><label><input type="radio" name="optradio" class="category">List of Categories</label></span>
+            </div> -->
+            <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+            <script type="text/javascript">
+                var pdf = new jsPDF();
+                pdf.text(30, 30, '');
+                pdf.save('hello_world.pdf');
+            </script> -->
+            <form id="form1">
+                    <div id="dvContainer" hidden>
+                            
+                        <div class="row">
+                            <!-- <tr> -->
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-13">
+                                <div class="jumbotron">
+                                <h1>Welcome to Skill Survey!</h1>
+                                
+                            </div>
+                            <!-- <div class="col-sm-1"></div> -->
+                            </div>
+                                </div>
+                        
+                        
+                        
+                        
+                        
+                                <div class="container">
+                                <div class="row">
+                                    <!-- <div class="col-sm-4"></div> -->
+                                <!-- <div class="col-sm-12"> -->
+                            
+                                <form action="/updateskills" method="post">
+                                    <div class="col-sm-12">
+                                     <div class="panel panel-default">
+                                            
+                                         <div class="panel-heading"> Arts </div>
+                                                                               <!-- <tr> -->
+                                             <div class="panel-body">
+                                                    
+                                                 
+                                                    <ol class="ministryListBlk">
+                                                        
+                                                        <% for(let i=0; i<skillslist.length; i++) { %>
+                                                                <% if (skillslist[i].Skill_Category == 'Arts'){ %>
+                                                      <tr> <td> <%= skillslist[i].Skill_Name  %></td><br></tr>
+                                                            <% } }%>
+                                                                
+                                                                
+                                                        </ol>
+                                                        <!-- <table><tr><td>abc</td>
+                                                            <td>efg</td>
+                                                            <td>adjk</td>
+                                                            <td>shdsja</td>
+                                                            </tr>
+                                                            </table> -->
+                                                        </div>
+                                                    <!-- </td>
+                                                    </tr> -->
+                                    </div>
+                                </div>
+                            </div>
+                                <!-- </div> -->
+                                <!-- </div> -->
+                                <!-- </div> -->
+                            
+                            
+                                <div class="col-sm-12">
+                                        <div class="panel panel-default">
+                                             
+                                            <div class="panel-heading"> Building Skills </div>
+                                                <div class="panel-body">
+                                                     <ul class="ministryListBlk">
+                                                         <% for(let i=0; i<skillslist.length; i++) { %>
+                                                                 <% if (skillslist[i].Skill_Category == 'Building Skills'){ %>
+                                                                    <tr> <td> <%= skillslist[i].Skill_Name  %></td><br></tr>
+                                                             <% } }%>
+                                                         </ul>
+                                     </div>
+                                 </div>
+                             </div>
+                                
+                             <div class="col-sm-12">
+                                    <div class="panel panel-default">
+                                         
+                                        <div class="panel-heading"> Event skills </div>
+                                            <div class="panel-body">
+                                                 <ul class="ministryListBlk">
+                                                     <% for(let i=0; i<skillslist.length; i++) { %>
+                                                             <% if (skillslist[i].Skill_Category == 'Event Skills'){ %>
+                                                                <tr> <td> <%= skillslist[i].Skill_Name  %></td><br></tr>
+                                                         <% } }%>
+                                                     </ul>
+                                 </div>
+                             </div>
+                            </div>
+                            
+                            <div class="col-sm-12">
+                                    <div class="panel panel-default">
+                                         
+                                        <div class="panel-heading"> Business/Technology </div>
+                                            <div class="panel-body">
+                                                 <ul class="ministryListBlk">
+                                                     <% for(let i=0; i<skillslist.length; i++) { %>
+                                                             <% if (skillslist[i].Skill_Category == 'Business/Technology'){ %>
+                                                                <tr> <td> <%= skillslist[i].Skill_Name  %></td><br></tr>
+                                                         <% } }%>
+                                                     </ul>
+                                 </div>
+                             </div>
+                            </div>
+                            
+                                  <div id="dvContainer2" hidden>
+                                        <table>
+                                                <tr>
+                                                    <th>Category</th>
+                                                    <th>List of Skills</th>
+                                                   
+                                                </tr>
+                                                <tr>
+                                                    <td>Arts</td>
+                                                    <% for(let i=0; i<skillslist.length; i++) { %>
+                                                            <% if (skillslist[i].Skill_Category == 'Arts'){ %>
+                                                   <td> <%= skillslist[i].Skill_Name  %></td><br>
+                                                        <% } }%>    
+                                                </tr>
+                                                <
+                                                <tr>
+                                                    <td>Building Skills</td>
+                                                    <% for(let i=0; i<skillslist.length; i++) { %>
+                                                            <% if (skillslist[i].Skill_Category == 'Building Skills'){ %>
+                                                   <td> <%= skillslist[i].Skill_Name  %></td><br>
+                                                        <% } }%>  
+                                                </tr>
+                                                <tr>
+                                                    <td>Event Skills</td>
+                                                    <% for(let i=0; i<skillslist.length; i++) { %>
+                                                            <% if (skillslist[i].Skill_Category == 'Event Skills'){ %>
+                                                   <td> <%= skillslist[i].Skill_Name  %></td><br>
+                                                        <% } }%>  
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>Business/Technology</td>
+                                                        <% for(let i=0; i<skillslist.length; i++) { %>
+                                                                <% if (skillslist[i].Skill_Category == 'Business/Technology'){ %>
+                                                       <td> <%= skillslist[i].Skill_Name  %></td><br>
+                                                            <% } }%> 
+                                                    </tr>
+                                            </table>
+                                  </div>
+                            
+                                </form>
+                                </div>
+                            
+                            </div>
+            </div>
+                    
+                    <input type="button" class="btn btn-info" value="as PDF" id="btnPrint" />
+                    <input type="button" class="btn btn-info" value="as Excel" id="btnPrint2" />
+                  
+                    </form>
+
+        </div>
+    </div>
+<!-- </tr> -->
+</div>
+
+</body>
+</html>
+
