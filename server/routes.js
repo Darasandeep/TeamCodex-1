@@ -1,8 +1,13 @@
+//Declaring required data models,packages and assigning them to variables
+
 var churchmodel = require('../model/churchmodel');
 var ministrymodel = require('../model/ministrymodel.js');
 var skillsmodel = require('../model/skillsmodel.js');
 var session = require('client-sessions');
 var md5 = require('md5');
+
+
+//tried to implement JQUERY snd JAVASCRIPT frontend access to serversid
 // using Version 5.4.1
 //  var jsdom = require('jsdom').jsdom;
 // //  var document = jsdom('<html></html>', {});
@@ -19,13 +24,11 @@ module.exports = router;
 router.get('/', function (req, res) {
   res.render('index');
 });
-// router.get('/parishioner',function(req,res){
-//   res.render('parishioner');
-// });
 
 
+//variable declared for assigning user id and use it as a cookie
 var puserid = "";
-
+//Routes for static pages
 router.get('/admin', function (req, res) {
   res.render('admin');
 });
@@ -137,7 +140,7 @@ router.get('/ministryEdit', function (req, res) {
 });
 
 
-
+//N/A 
 router.get('/login', function (req, res) {
   res.render('login', {
     errorMessage: ""
@@ -152,13 +155,14 @@ router.get('/login', function (req, res) {
 // }));
 
 
-
+//Password hashing variables to declare number of salt rounds
 const saltRounds = 10;
 const myPlaintextPassword = 's0/\/\P4$$w0rD';
 const someOtherPlaintextPassword = 'not_bacon';
 
-
+//Post method to create new user by Admin.
 router.post("/newuser", function (req, res) {
+  //Gathering input data from admin create user task
   console.log(req.body);
   var user = new churchmodel();
   Parishionerid = req.body.pid;
@@ -202,8 +206,7 @@ router.post("/newuser", function (req, res) {
 });
 
 
-//post method for login 
-
+//POST method for login 
 router.post('/login', function (req, res) {
   //let id = req.params.id;
   var username = req.body.uname;
@@ -644,24 +647,27 @@ router.post("/deleteuser", function (req, res) {
 
 router.post("/updateministrypage", function (req, res) {
   let ministry = {
-    "minisrtyname":req.body.scheckBox14,
-    "activity": [req.body.act1,req.body.act2],
-    "contact":req.body.pAddress
+    "activity": [req.body.activities],
+    "contact":req.body.leadcontact,
+    "update":req.body.updates
   };
+  res.redirect('back');
+  console.log(ministry);
+//   ministrymodel.update({minisrtyname: req.body.mname}, ministry, function(err, result){
+//    if(!err){
+//        res.redirect('back');
+//        console.log();
+//    }
+// });
 
-  ministrymodel.update({minisrtyname: req.body.mname}, ministry, function(err, result){
-   if(!err){
-       res.redirect('back');
-       console.log(ministry);
-   }
 });
 
+
+
+
+router.get('/exp', function (req, res) {
+  res.render('exp');
 });
-
-
-
-
-
 
 
 
