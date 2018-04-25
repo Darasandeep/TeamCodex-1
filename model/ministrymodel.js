@@ -18,9 +18,7 @@ var ministryschema=mongoose.Schema({
   status:{
     type:String
   },
-  activity:{
-    type:String
-  },
+  activity:[String],
   contact:{
     type:String
   }

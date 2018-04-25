@@ -40,7 +40,7 @@
     });
     $('a.edit2').click(function () {
     var text = $('.up1').text();
-    var input = $('<input id="update1" type="text" value="' + text + '" />')
+    var input = $('<input id="update1" name="update1" type="text" value="' + text + '" />')
     $('.up1').text('').append(input);
     input.select();
     $('.save2').show();
@@ -85,7 +85,7 @@
     </script>
     </head>
 
-          
+    <form action="/updateministrypage" method="post">
             <div >
                 <div class="col-sm-9" id="con">
 
@@ -97,7 +97,7 @@
                             <center> <img src="/slide1.jpg" alt="team 1" align="left" height="350" width="1000"> 
                             <div class="carousel-caption">
 
-                                <h1><font color="white" name="mname">Adult Faith Formation Programs</font></h1>
+                                <h1><font color="white" name="mname"><input name="scheckBox14" hidden>Heavenly Dusters</font></h1>
                                 </div>
                                 <center>
                                 <a href="#contentpara">
@@ -130,7 +130,7 @@
                             
                             <ul>
                                     <label class="u1" name = "act1">
-                                <li>Activity one has started </br>
+                                <li >Activity one has started </br>
                                 </li>
                             </label>
                             <label class="u2" name = "act2">
@@ -141,7 +141,7 @@
                             </ul>
                         
                         </div>
-                        <div class="align-top"><a class= "save" href="updateministrypage" hidden><div align="center"><button type="button" class="btn btn-default btn-sm">save</button></div></a></div>
+                        <div class="align-top"><a class= "save"  hidden><div align="center"><button type="submit"  class="btn btn-default btn-sm">save</button></div></a></div>
                     </div>
                     <div class="panel panel-default">
                     <div class="panel-heading" class="col-sm-3">Updates<a class= "edit2" href="#"><div align="right"><button type="button" class="btn btn-default btn-sm">
@@ -159,7 +159,7 @@
                                     
                                 </ul>
                                 </div>
-                                <div class="align-top"><a class= "save2" href="updateministrypage" hidden><div align="center"><button type="button" class="btn btn-default btn-sm">save</button></div></a></div>
+                                <div class="align-top"><a class= "save2"  hidden><div align="center"><button type="button" class="btn btn-default btn-sm">save</button></div></a></div>
                             </div>
                         </div>  
                     <div class="panel panel-default">
@@ -181,17 +181,20 @@
                             </label>
                             </ul>
                         </div>
-                        <div class="align-top"><a class= "save3" href="updateministrypage" hidden><div align="center"><button type="button" class="btn btn-default btn-sm">save</button></div></a></div>
+                        <div class="align-top"><a class= "save3"  hidden><div align="center"><button type="button" class="btn btn-default btn-sm">save</button></div></a></div>
                     </div>
+                   
+                    <button class="btn btn-info" type="submit" onclick="feedback();"/>Update Page</button>
+                </form>
                 </div>
             </div>
-
+            
         </div>
 
             <div id="content">
                 <div class="col-sm-9" class="container">
                     <div class="jumbotron">
-                        <h1>Welcome to Adult Faith Formation Programs</h1>
+                        <h1>Welcome to Heavenly Dusters</h1>
                         <p name= "mission">“You can do something I cannot do. I can do something you cannot do. Together let us do something
                             beautiful for God.” – Blessed Mother Teresa
                         </p>
@@ -212,8 +215,13 @@
                     </p>
                 </div>
 
-
+                
                
+                <script>
+                        function feedback() {
+                          alert("Ministry Page updated succesfully");
+                       }
+                      </script>
                 <style>
                 #co {
                     position: relative;
