@@ -1,8 +1,8 @@
-node{
-    stages {
+
+pipeline{
+    ages any
         stage('Build') {
             steps {
-                sh 'npm install'
+                echo 'build done'
             }
-     }
    }
